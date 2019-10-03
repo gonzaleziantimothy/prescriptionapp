@@ -1,0 +1,86 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  height:100vh;
+  width:100%;
+  background-color: #2b2d30;
+  
+
+}
+
+.appBorder{
+  
+  background-color: #2b2d30;
+  padding-top: 2vh;
+  padding-right: 2vh;
+  padding-left: 2vh;
+  height: 90vh;
+  width: 100%;
+  z-index: 5;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 20vh;
+  column-gap:1%;
+  grid-row-gap: 2vh; 
+}
+
+.gridItem1{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start:1; 
+  grid-row-end: 3;
+}
+.gridItem2{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start:1; 
+  grid-row-end: 3;
+}
+.gridItem3{
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start:1; 
+  grid-row-end: 4;
+}
+.gridItem4{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start:3; 
+  grid-row-end: 5;
+}
+.gridItem5{
+  grid-column-start:2;
+  grid-column-end: 3;
+  grid-row-start:3; 
+  grid-row-end: 5;
+}
+
+
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #2b2d30;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.box{
+  background-color: #e2e4e2;
+}
