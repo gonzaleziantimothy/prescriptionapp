@@ -24,29 +24,39 @@ function App() {
   })
 
 
-  function uploadImage(event) {
+ function uploadImage(event) {
     // window.localStorage.clear()
     // event.target.value = null;
-      var reader = new FileReader();
       var name = event.target.files[0].name;
       var parentDiv = document.getElementById('preview');
-      reader.addEventListener("load", function () {
+      var img = document.getElementById("img");
+
+      function previewImage(){
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
           if (this.result && localStorage) {
               window.localStorage.setItem(name, this.result);
               var image = new Image();
-              
+              image.setAttribute('id', 'img');
               image.src = window.localStorage.getItem(name);
               parentDiv.append(image);
           } else {
             alert();
           }
-      });
-      reader.readAsDataURL(event.target.files[0]);
+        });
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    if(parentDiv.contains(img) === false){
+        previewImage();
+    } else if(parentDiv.contains(img)){
+      img.outerHTML= "";
+      previewImage();
+     
+    }
+     
       console.log(name);
       console.log(event.target.files[0]);
   }
-
-
 
   function changeHandler(e){
     let value = e.target.value;
@@ -55,36 +65,11 @@ function App() {
       [e.target.name]: value
     })
   }
+
   function DeleteImage(name){
     alert(name)
     window.localStorage.removeItem(name);
   }
-
-  function showImages() {
-            var img = document.getElementById("img");
-            var parentDiv = document.getElementById('preview');
-
-            if (parentDiv.contains(img)) {
-                parentDiv.prepend(img);
-            } else if (parentDiv.contains(img) === false) {
-
-                for (let i = 0; i < window.localStorage.length; i++) {
-                  console.log(window.localStorage.key(i))
-               let res = window.localStorage.getItem(window.localStorage.key(i));
-                    var image = new Image();
-                    var button = document.createElement("button");
-                    console.log(res)
-                    button.innerHTML = "Delete";
-                    button.setAttribute('className' , 'deleteButton');
-                    // button.setAttribute('onClick', function delete(){DeleteImage(window.localStorage.key(i))});
-                    image.src = res;
-                    image.setAttribute('id', 'img');
-                    parentDiv.append(image);
-                    parentDiv.append(button);
-                }
-            }
-  }
-
   
 console.log(patientInputs.date)
 
@@ -208,14 +193,6 @@ console.log(patientInputs.date)
             <form encType = "multipart/form-data">
               <input type="file" onChange={uploadImage} />
             </form>
-
-              <button onClick={showImages}  
-              className="d-flex justify-content-center btn btn-primary">
-                  Show Images
-              </button>
-
-              
-  
           </div>
         </div> 
       </div>
