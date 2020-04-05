@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SignatureCanvas from 'react-signature-canvas'
+import SignatureCanvas from 'react-signature-canvas';
+import AutosizeInput from 'react-input-autosize';
 
 function App() {
   let newDate = new Date();
@@ -12,15 +13,15 @@ function App() {
     headertwo:""
   })
   let [patientInputs, setPatientInputs] = useState({
-    PatientName:"",
+    patientName:"",
     address:"",
     age:"",
     date: current
   })
-  let [doctorsInputs, setDoctorsInputs] = useState({
-    DoctorsName:"",
-    PRC:"",
-    PTR:""
+  let [doctorInputs, setDoctorInputs] = useState({
+    doctorName:"",
+    prc:"",
+    ptr:""
   })
 
 
@@ -58,10 +59,18 @@ function App() {
       console.log(event.target.files[0]);
   }
 
-  function changeHandler(e){
+  function patientChangeHandler(e){
     let value = e.target.value;
     setPatientInputs({
       ...patientInputs,
+      [e.target.name]: value
+    })
+  }
+
+  function doctorChangeHandler(e){
+    let value = e.target.value;
+    setDoctorInputs({
+      ...doctorInputs,
       [e.target.name]: value
     })
   }
@@ -76,7 +85,7 @@ console.log(patientInputs.date)
   return (
     <div className="App">
       
-      <div className="landing pt-2">
+      <div className="landing pt-3">
       <div className="row">
         <div className="col-6">
           <form className="form">
@@ -107,9 +116,9 @@ console.log(patientInputs.date)
                           placeholder="Type here" 
                           className="form-control col-8" 
                           id="patientName"
-                          onChange = {changeHandler}
-                          name="PatientName"
-                          value= {patientInputs.PatientName}
+                          onChange = {patientChangeHandler}
+                          name="patientName"
+                          value= {patientInputs.patientName}
                           aria-describedby="patientName"></input>   
                 </div>
                 <div className="form-group-patient form-inline">
@@ -118,7 +127,7 @@ console.log(patientInputs.date)
                         placeholder="Type here" 
                         className="form-control col-8" 
                         id="address"
-                        onChange = {changeHandler}
+                        onChange = {patientChangeHandler}
                         name="address"
                         value= {patientInputs.address}
                         aria-describedby="address"></input>
@@ -132,7 +141,7 @@ console.log(patientInputs.date)
                         placeholder="Type here" 
                         className="form-control col-8" 
                         id="age"
-                        onChange = {changeHandler}
+                        onChange = {patientChangeHandler}
                         name="age"
                         value= {patientInputs.age}
                         aria-describedby="age"></input>
@@ -144,7 +153,7 @@ console.log(patientInputs.date)
                         placeholder="Header" 
                         className="form-control col-8" 
                         id="date"
-                        onChange = {changeHandler}
+                        onChange = {patientChangeHandler}
                         name="date"
                         value= {patientInputs.date}
                         aria-describedby="date"></input>
@@ -160,26 +169,36 @@ console.log(patientInputs.date)
             </div>
             <div className="row doctor-row">
               <div className="col-5"></div>
-           
-
-            
               <div className="col-7">
-                  <div className="form-group-doctor form-inline">
+                  <div className="form-group-doctor form-inline d-flex justify-content-end">
                     <div id="preview"></div>
-                    <input type="text" placeholder="Doctor's Name" className="form-control" id="doctor" aria-describedby="Doctor"></input>
+                    <AutosizeInput type="text" 
+                            placeholder="Doctor's Name" 
+                            id="doctor"
+                            name="doctorName"
+                            value={doctorInputs.doctorName}
+                            onChange={doctorChangeHandler}/>
                    
                   </div>
 
                   <div className="form-group-doctor form-inline d-flex justify-content-end">
                     <label className="license" for="prc">PRC:</label>
-                    <input type="number" placeholder="PRC number" className="license form-control" 
-                    id="PRC" aria-describedby="PRC"></input>
+                    <AutosizeInput type="text" 
+                                  placeholder="PRC number"
+                                  name="prc"
+                                  value={doctorInputs.prc}
+                                  onChange={doctorChangeHandler}
+                                  id="prc"/>
                    
                   </div>
                   <div className="form-group-doctor form-inline d-flex justify-content-end">
                     <label className="license" for="PTR">PTR:</label>
-                    <input type="number" placeholder="PTR number" className="license form-control"
-                     id="PTR" aria-describedby="PTR"></input>
+                    <AutosizeInput type="text" 
+                            placeholder="PTR number" 
+                            name="ptr"
+                            value={doctorInputs.ptr}
+                            onChange={doctorChangeHandler} 
+                            id="ptr"/>
                    
                   </div>
 
