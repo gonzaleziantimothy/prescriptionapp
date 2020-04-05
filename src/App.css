@@ -31,6 +31,7 @@ html{
   text-align: center;
   padding: 10px;
   height: 95vh;
+  border-radius: 5px;
 
 }
 .form-group{
@@ -67,7 +68,7 @@ html{
 
 }
 #textarea{
-  height: 50vh;
+  height: 45vh;
   font-size: 15px;
   padding: 0 25px;
 
@@ -85,25 +86,21 @@ html{
   height: 100vh;
   color: white;
 }
+
 .doctor-row{
   margin-top: 5px;
   margin-bottom: 20px;
 }
-#doctor{
-  padding: 0 !important;
-  text-align: right;
-  overflow: visible;
-  width: 100%;
-  /*background: transparent;*/
-}
 
-.license{
-  font-size: 12px;
-}
-
-#PRC,
-#PTR{
-  width: 100px;
+.license,
+#doctor,
+#prc,
+#ptr{
+  background: transparent;
+  border-radius: 5;
+  padding: 0 ;
+  border: none;
+  font-size: 12px; 
 }
 
 input{
@@ -122,13 +119,27 @@ input{
   text-align: right;
 }
 
- img{
-     height: 60px;
-     width:auto;
-     border-radius: 10px;
-     box-shadow: 0 0 1.2rem rgba(0,0,0,.25); 
-     
-    }
+img{
+  height: 50px;
+  width: auto;
+}
+
+
+
+/*Mobile Style*/
+/*only screen (media type) --- (max-width)(media feature)*/
+/*only screen only for specific size (max-width)*/
+
+@media only screen and (max-width: 400px){
+
+}
+
+
+
+/*tablet style*/
+@media only screen and (min-width: 401px) and (max-width: 960px){
+
+}
 
 
 
