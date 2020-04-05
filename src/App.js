@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import SignatureCanvas from 'react-signature-canvas';
 import AutosizeInput from 'react-input-autosize';
+import htmlToImage from 'html-to-image';
 
 function App() {
   let newDate = new Date();
@@ -24,6 +25,14 @@ function App() {
     ptr:""
   })
 
+  useEffect(() => {
+    let doctorinfo = JSON.parse(window.localStorage.getItem("doctorInputs"))
+    if(doctorinfo !== null){ 
+      setDoctorInputs(doctorinfo)
+    }
+  }, []);
+ 
+  
 
  function uploadImage(event) {
     // window.localStorage.clear()
@@ -59,6 +68,18 @@ function App() {
       console.log(event.target.files[0]);
   }
 
+  function generatePrescription(){
+    htmlToImage.toJpeg(document.getElementById('fullPrescription'), { quality: 0.95 })
+      .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = dataUrl;
+      link.click();
+    });
+  }
+
+
+
   function patientChangeHandler(e){
     let value = e.target.value;
     setPatientInputs({
@@ -80,7 +101,19 @@ function App() {
     window.localStorage.removeItem(name);
   }
   
-console.log(patientInputs.date)
+  function saveDoctorInfo(){
+     window.localStorage.setItem("doctorInputs", JSON.stringify(doctorInputs));
+     alert("Doctor's information saved")
+  }
+  function clearDoctorInfo(){
+    window.localStorage.removeItem("doctorInputs")
+    setDoctorInputs({
+      doctorName:"",
+      prc:"",
+      ptr:""})
+    alert("Doctor's information cleared")
+  }
+    console.log(patientInputs.date)
 
   return (
     <div className="App">
@@ -88,7 +121,7 @@ console.log(patientInputs.date)
       <div className="landing pt-3">
       <div className="row">
         <div className="col-6">
-          <form className="form">
+          <form className="form" id="fullPrescription">
             <div className="form-group">
               <input type="text" 
                     placeholder="Practice Name" 
@@ -212,7 +245,18 @@ console.log(patientInputs.date)
             <form encType = "multipart/form-data">
               <input type="file" onChange={uploadImage} />
             </form>
+            <button className="btn btn-primary" onClick={generatePrescription}>
+              Generate Prescription
+            </button>
+            <button className="btn btn-success" onClick={saveDoctorInfo}>
+              Save Doctor's Information
+            </button>
+            <button className="btn btn-warning" onClick={clearDoctorInfo}>
+              Clear Doctors Information
+            </button>
+          
           </div>
+          
         </div> 
       </div>
        
