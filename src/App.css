@@ -10,19 +10,15 @@ html{
 
 .App {
   width:100%;
-  position: relative;
-  /*background-image: url("./images/bg1.png");*/
   background-position: fixed;
-  background-size: contain; 
-  background-color: #313639;
+  background-size: cover; 
+  background-color: #1E2832;
+  padding: 5px 30px;
 }
 
-.row{
-  margin:0;
-}
-
-.app-body{
+.landing {
   width: 100%;
+  color: white;
 }
 
 .form{
@@ -46,6 +42,7 @@ html{
 .header-group{
   text-align: center;
   margin: 0;
+  padding: 0;
 }
 
 #header{
@@ -59,12 +56,13 @@ html{
   padding-left: 15px;
   font-weight: bold;
   margin: 0;
-  font-size: 55px;
+  font-size: 3em;
   text-align: left;
 }
-.form-group-patient{
+.form-group-patient .form-control{
   margin: 0;
   text-align: left;
+  padding: 0;
 
 }
 #textarea{
@@ -77,15 +75,9 @@ html{
 .form-group-doctor{
   margin: 0;
   text-align: right;
+  padding: 0;
 }
 
-/*class landing*/
-
-.landing {
-  width: 100%;
-  height: 100vh;
-  color: white;
-}
 
 .doctor-row{
   margin-top: 5px;
@@ -95,12 +87,19 @@ html{
 .license,
 #doctor,
 #prc,
-#ptr{
+#ptr,
+#header,
+#header-two,
+#patientName,
+#address,
+#age,
+#date{
   background: transparent;
   border-radius: 5;
-  padding: 0 ;
+  padding: 0;
   border: none;
   font-size: 12px; 
+  padding: 0;
 }
 
 input{
@@ -109,10 +108,13 @@ input{
 }
 
 #signatureUploader{
-  height: 50vh;
-  width: 50%;
+  height: 40vh;
+  width: 70%;
   background-color: #fff;
+  border-radius: 5px;
+  /*position: relative;*/
 }
+
 #preview{
   height:50px;
   width:100%;
@@ -124,6 +126,43 @@ img{
   width: auto;
 }
 
+#file-sig{
+  color: #800000;
+}
+
+#file-input{
+  width: inherit;
+}
+
+.imgupload{
+color: #1E2832;
+padding-top: 40px;
+font-size: 7em;
+}
+
+#namefile{
+color: black;
+margin-bottom: 0;
+}
+
+#subnamefile{
+  color: grey;
+  font-size: 0.7em;
+}
+
+#saveRx{
+  height: 20vh;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+footer{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
 
 
 /*Mobile Style*/
@@ -131,6 +170,24 @@ img{
 /*only screen only for specific size (max-width)*/
 
 @media only screen and (max-width: 400px){
+  #header-two{
+    font-size: 6px;
+  }
+  #header,
+  .form-group-patient,
+  #patientName,
+  #address,
+  #age,
+  #date,
+  .license,
+  #doctor,
+  #prc,
+  #ptr{
+    font-size: 8px;
+  }
+  .rx{
+    font-size: 2em;
+  }
 
 }
 
