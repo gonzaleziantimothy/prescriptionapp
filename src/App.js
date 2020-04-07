@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SignatureCanvas from 'react-signature-canvas';
 import AutosizeInput from 'react-input-autosize';
 import htmlToImage from 'html-to-image';
 
