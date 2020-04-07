@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SignatureCanvas from 'react-signature-canvas';
 import AutosizeInput from 'react-input-autosize';
+import htmlToImage from 'html-to-image';
 
 function App() {
   let newDate = new Date();
@@ -23,7 +23,16 @@ function App() {
     prc:"",
     ptr:""
   })
+  let [disabledBtn, setDisabledBtn] = useState(true);
 
+  useEffect(() => {
+    let doctorinfo = JSON.parse(window.localStorage.getItem("doctorInputs"))
+    if(doctorinfo !== null){ 
+      setDoctorInputs(doctorinfo)
+    }
+  }, []);
+ 
+  
 
  function uploadImage(event) {
     // window.localStorage.clear()
@@ -54,12 +63,22 @@ function App() {
       previewImage();
      
     }
-     
+
       console.log(name);
       console.log(event.target.files[0]);
   }
 
- function headerChangeHandler(e){
+  function generatePrescription(){
+    htmlToImage.toJpeg(document.getElementById('fullPrescription'), { quality: 1 })
+      .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'Rx-' + patientInputs.patientName + '-name.jpeg';
+      link.href = dataUrl;
+      link.click();
+    });
+  }
+
+   function headerChangeHandler(e){
     let value = e.target.value;
     setHeaders({
       ...headers,
@@ -83,79 +102,121 @@ function App() {
     })
   }
 
+  function DeleteImage(name){
+    alert(name)
+    window.localStorage.removeItem(name);
+  }
+  
+  function saveDoctorInfo(){
+     window.localStorage.setItem("doctorInputs", JSON.stringify(doctorInputs));
+     alert("Doctor's information saved")
+  }
+
+  function clearDoctorInfo(){
+    window.localStorage.removeItem("doctorInputs")
+    setDoctorInputs({
+      doctorName:"",
+      prc:"",
+      ptr:""})
+    alert("Doctor's information cleared")
+  }
+
+  function download(){
+    if(headers.header !== "" && headers.headertwo !== ""
+        && patientInputs.patientName !== "" && patientInputs.address !== ""
+        && patientInputs.age !== "" && patientInputs.date !==""
+        && doctorInputs.doctorName !== "" && doctorInputs.prc !== ""
+        && doctorInputs.ptr !== ""){
+      if(disabledBtn){
+        setDisabledBtn(false);
+      }
+    } else{
+        if(!disabledBtn){
+          setDisabledBtn(true);
+        }
+      } 
+    }
+
+  download();
+
   return (
     <div className="App">
       
-      <div className="landing pt-3">
+      <div className="landing pt-2">
         <div className="row">
-          <div className="col-12 col-md-6 col-lg-6">
-            <form className="form">
+          <div className="col-12 col-md-12 col-lg-6">
+            <form className="form white-containers" id="fullPrescription">
+              <div className="form-group">
                 <AutosizeInput type="text" 
-                                placeholder="Practice Name" 
-                                className="form-control header-group" 
-                                id="header"
-                                onChange={headerChangeHandler}
-                                name="header"
-                                value={headers.header}/>
-          
-                <AutosizeInput type="text" 
-                                placeholder="Practice Details"
-                                className="form-control header-group" 
-                                id="header-two"
-                                onChange={headerChangeHandler}
-                                name="headertwo"
-                                value={headers.headertwo}/>
+                                  placeholder="Practice Name" 
+                                  className="form-control header-group" 
+                                  id="header"
+                                  onChange={headerChangeHandler}
+                                  name="header"
+                                  value={headers.header}/>
+               
+              </div>
 
+              <div className="form-group">
+                <AutosizeInput type="text" 
+                                  placeholder="Practice Details"
+                                  className="form-control header-group" 
+                                  id="header-two"
+                                  onChange={headerChangeHandler}
+                                  name="headertwo"
+                                  value={headers.headertwo}/>
+               
+              </div>
               <hr/>
 
               <div className="row">
                 <div className="col-8 col-md-8">
                   <div className="form-group-patient form-inline">
-                    <label className="mb-0" for="patientName">Patient Name:</label>
+                    <label className="mb-0" htmlFor="patientName">Patient Name:</label>
                     <AutosizeInput type="text" 
-                                    placeholder="Type here" 
-                                    className="form-control col-4 col-md-8 p-0" 
-                                    id="patientName"
-                                    onChange = {patientChangeHandler}
-                                    name="patientName"
-                                    value= {patientInputs.patientName}/>   
+                                      placeholder="Type here" 
+                                      className="form-control col-4 col-md-8" 
+                                      id="patientName"
+                                      onChange = {patientChangeHandler}
+                                      name="patientName"
+                                      value= {patientInputs.patientName}/>   
                   </div>
                   <div className="form-group-patient form-inline">
-                    <label className="mb-0" for="address">Address:</label>
+                    <label className="mb-0" htmlFor="address">Address:</label>
                     <AutosizeInput type="text" 
-                                    placeholder="Type here" 
-                                    className="form-control col-4 col-md-8" 
-                                    id="address"
-                                    onChange = {patientChangeHandler}
-                                    name="address"
-                                    value= {patientInputs.address}
-                                    aria-describedby="address"/>
+                                      placeholder="Type here" 
+                                      className="form-control col-4 col-md-8" 
+                                      id="address"
+                                      onChange = {patientChangeHandler}
+                                      name="address"
+                                      value= {patientInputs.address}
+                                      aria-describedby="address"/>
                   </div>
                 </div>
               
                 <div className="col-4">
                   <div className="form-group-patient form-inline">
-                    <label className="mb-0" for="age">Age:</label>
+                    <label className="mb-0" htmlFor="age">Age:</label>
                     <AutosizeInput type="text" 
-                          placeholder="Type here" 
-                          className="form-control col-8" 
-                          id="age"
-                          onChange = {patientChangeHandler}
-                          name="age"
-                          value= {patientInputs.age}
-                          aria-describedby="age"/>
+                            placeholder="Type here" 
+                            className="form-control col-8" 
+                            id="age"
+                            onChange = {patientChangeHandler}
+                            name="age"
+                            value= {patientInputs.age}
+                            aria-describedby="age"/>
                   </div>
 
                   <div className="form-group-patient form-inline">
-                    <label className="mb-0" for="date">Date:</label>
-                    <AutosizeInput type="text" 
-                          placeholder="Header" 
-                          className="form-control col-8" 
-                          id="date"
-                          onChange = {patientChangeHandler}
-                          name="date"
-                          value= {patientInputs.date}
-                          aria-describedby="date"/>
+                    <label className="mb-0" htmlFor="date">Date:</label>
+                      <AutosizeInput type="text" 
+                            placeholder="Header" 
+                            className="form-control col-8" 
+                            id="date"
+                            onChange = {patientChangeHandler}
+                            name="date"
+                            value= {patientInputs.date}
+                            aria-describedby="date"/>
                   </div>
                 </div>
               </div>
@@ -181,7 +242,7 @@ function App() {
                     </div>
 
                     <div className="form-group-doctor form-inline d-flex justify-content-end">
-                      <label className="license" for="prc">PRC:</label>
+                      <label className="license m-0" htmlFor="prc">PRC:</label>
                       <AutosizeInput type="text" 
                                     placeholder="PRC number"
                                     name="prc"
@@ -191,7 +252,7 @@ function App() {
                      
                     </div>
                     <div className="form-group-doctor form-inline d-flex justify-content-end">
-                      <label className="license" for="PTR">PTR:</label>
+                      <label className="license m-0" htmlFor="PTR">PTR:</label>
                       <AutosizeInput type="text" 
                               placeholder="PTR number" 
                               name="ptr"
@@ -205,22 +266,47 @@ function App() {
               </div>
             </form> 
           </div>
-          <div className="col-12 col-md-6 text-center p-5">
+          <div className="right-div col-12 col-md-12 col-lg-6 text-center p-5">
             <h4 className="white wd-100 text-center">Upload your signature here</h4>
-            <div id="signatureUploader" className="text-dark container p-5">
-              <form encType = "multipart/form-data">
-                <i id="file-sig" className="fas fa-file-signature fa-5x"></i>
-                <p id="namefile">Only pictures allowed.</p> 
-                <p id="subnamefile">(e.g. jpg ,jpeg, png)</p>
-                <input id="file-input" type="file" onChange={uploadImage}/>    
+            <div id="signatureUploader" className="text-dark container white-containers">
+              <form encType="multipart/form-data">
+                <div id="file-sig-div">
+                  <i id="file-sig" className="fas fa-file-signature fa-4x"></i> 
+                  <div>
+                  <p id="namefile">Only pictures allowed.</p> 
+                  <p id="subnamefile">(e.g. jpg ,jpeg, png)</p>
+                  </div>
+                </div>
+                <input id="file-input" type="file" onChange={uploadImage}/>
+                
+                <hr/>
+                <div className="btn-div">
+                  <button id="btn-savedr" className="btn text-white" onClick={saveDoctorInfo}>
+                  Save Doctor's Info
+                  </button>
+                  <button id="btn-cleardr" className="btn" onClick={clearDoctorInfo}>
+                    Clear Doctor's Info
+                  </button>    
+                </div>
               </form>
             </div>
-            <h4 className="white wd-100 text-center pt-3">Ready to download?</h4>
-            <div id="saveRx" className="text-dark container p-5">
-              <p>Check the preview on the left side before saving.</p>
+            <h4 className="white wd-100 text-center pt-3">Done writing your prescription?</h4>
+            <div id="saveRx" className="text-dark container p-4 white-containers">
+              <p id="notice">If you cannot click the download button, you might be missing some details on your prescription. Please check.</p>
+              <hr/>
+              <button id="btn-dl" 
+                      className="btn text-white" 
+                      onClick={generatePrescription}
+                      disabled={disabledBtn} 
+                      type="button">
+                Ready to Download!
+              </button> 
             </div>
-            <footer><small>&copy;2020gonzalesgonzalez</small></footer>
-          </div>  
+
+          </div> 
+            <footer>
+              <small>&copy; 2020 gonzalesgonzalez</small>
+            </footer>  
         </div>  
       </div>
     </div>
