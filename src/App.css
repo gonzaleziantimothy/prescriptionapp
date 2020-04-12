@@ -10,9 +10,6 @@ html{
 
 .App {
   width:100%;
-  background-image: url(./images/1.png);
-  background-position: right bottom;
-  background-repeat: no-repeat;
   background-size: contain; 
   background-color: #2F4F4F;
   padding: 15px 30px;
@@ -186,11 +183,11 @@ footer{
 }
 
 .white-containers{
-  box-shadow: 2px 2px #d3d3d3;
+  box-shadow: -2px 3px 300px -16px rgba(0,0,0,1);
 }
 
 h4{
-  text-shadow: 2px 2px #333;
+ 
 }
 
 
