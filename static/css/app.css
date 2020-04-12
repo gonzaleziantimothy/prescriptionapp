@@ -1,0 +1,461 @@
+
+  
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+.App {
+  width:100%;
+  background-size: contain; 
+  background-color: #2F4F4F;
+  padding: 15px 30px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.landing {
+  width: 100%;
+  color: white;
+}
+
+.form{
+  color: #313639;
+  background-color: white;
+  text-align: center;
+  padding: 10px;
+  height: 95vh;
+  border-radius: 5px;
+}
+
+.form-group{
+  margin: 0;
+}
+
+.form-control{
+  border: 0;
+  box-shadow: none;
+}
+
+.header-group{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.rx{
+  padding-left: 15px;
+  font-weight: bold;
+  margin: 0;
+  font-size: 3em;
+  text-align: left;
+}
+
+.form-group-patient .form-control{
+  margin: 0;
+  text-align: left;
+  padding: 0;
+}
+
+#textarea{
+  height: 40vh;
+  font-size: 1em;
+  padding: 0 25px;
+}
+
+.form-group-doctor{
+  margin: 0;
+  text-align: right;
+  padding: 0;
+}
+
+.doctor-row{
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.license,
+#doctor,
+#prc,
+#ptr,
+#header,
+#header-two,
+#patientName,
+#address,
+#age,
+#date{
+  background: transparent;
+  border-radius: 5;
+  padding: 0;
+  border: none;
+  font-size: 1em; 
+  padding: 0;
+}
+
+input{
+  padding:0 5px !important;
+  background: transparent !important;
+}
+#header{
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+#signatureUploader{
+  height: 40vh;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 48px;
+}
+
+#preview{
+  height:50px;
+  width:100%;
+  text-align: right;
+}
+
+img{
+  height: 50px;
+  width: auto;
+}
+
+#file-sig{
+  color: #933A16;
+}
+
+#file-input{
+  width: inherit;
+}
+
+.imgupload{
+color: #1E2832;
+padding-top: 40px;
+font-size: 7em;
+}
+
+#namefile{
+  color: black;
+  margin-bottom: 0;
+}
+
+#subnamefile{
+  color: grey;
+  font-size: 0.7em;
+}
+
+#saveRx{
+  height: 27vh;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 20px;
+  padding-bottom: 5px;
+}
+
+.btn-div{
+  display: flex;
+  justify-content: space-between;
+}
+
+#btn-savedr,
+#btn-cleardr{
+  width: 50%;
+  margin: 2px;
+  font-size: 0.5em;
+}
+
+#btn-savedr{
+  background-color: #708090;
+}
+
+#btn-dl{
+  background-color: #3944BC;
+}
+
+.white-containers{
+  box-shadow: -2px 3px 300px -16px rgba(0,0,0,1);
+}
+
+h4{
+ 
+}
+
+
+
+/*Mobile Style*/
+/*only screen (media type) --- (max-width)(media feature)*/
+/*only screen only for specific size (max-width)*/
+
+@media only screen and (max-width: 400px){
+  #header-two{
+    font-size: 0.5em;
+  }
+  #header,
+  .form-group-patient,
+  #patientName,
+  #address,
+  #age,
+  #date,
+  .license,
+  #doctor,
+  #prc,
+  #ptr{
+    font-size: 0.7em;
+  }
+  .rx{
+    font-size: 2em;
+  }
+  #textarea{
+    height: 40vh;
+    font-size: 0.5em;
+    padding: 0 25px;
+  }
+  #file-input{
+    /*width: 70%;*/
+    font-size: 0.5em;
+  }
+  .form{
+    height: 80vh;
+  }
+  .right-div{
+    padding: 24px !important;
+  }
+  #signatureUploader{
+    width: 90%;
+    padding: 24px 48px;
+  }
+  #file-sig-div{
+    display: flex;
+    flex-direction: row;
+  }
+  #namefile{
+    font-size: 0.7em;
+  }
+  .btn-div{
+    display: flex;
+    flex-direction: column;
+  }
+  #btn-savedr,
+  #btn-cleardr{
+    width: 100%;
+  }
+  #notice{
+    font-size: 0.5em;
+  }
+  #btn-dl{
+    font-size: 0.7em;
+  }
+}
+
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #header-two{
+      font-size: 0.3em;
+    }
+    #header{
+      font-size: 0.7em;
+    }
+    .form-group-patient,
+    #patientName,
+    #address,
+    #age,
+    #date,
+    .license,
+    #doctor,
+    #prc,
+    #ptr{
+      font-size: 0.4em;
+    }
+    #textarea{
+      height: 20vh;
+    }
+    #signatureUploader{
+      padding: 24px;
+    }}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    #textarea{
+      height: 30vh;
+    }
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+  #textarea{
+    height: 40vh;
+  }
+}
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    #header-two{
+      font-size: 0.5em;
+    }
+    #header,
+    .form-group-patient,
+    #patientName,
+    #address,
+    #age,
+    #date,
+    .license,
+    #doctor,
+    #prc,
+    #ptr{
+      font-size: 0.7em;
+    }
+    .rx{
+      font-size: 2em;
+    }
+    #textarea{
+      height: 35vh;
+      font-size: 0.5em;
+      padding: 0 25px;
+    }
+    #file-input{
+      /*width: 70%;*/
+      font-size: 0.5em;
+    }
+    .form{
+      height: 80vh;
+    }
+    .right-div{
+      padding: 24px !important;
+    }
+    #signatureUploader{
+      width: 90%;
+      padding: 48px;
+    }
+    #file-sig-div{
+      display: flex;
+      flex-direction: row;
+    }
+    #namefile{
+      font-size: 0.7em;
+    }
+    .btn-div{
+      display: flex;
+      flex-direction: column;
+    }
+    #btn-savedr,
+    #btn-cleardr{
+      width: 100%;
+    }
+    #notice{
+      font-size: 0.5em;
+    }
+    #btn-dl{
+      font-size: 0.7em;
+    }
+}
+
+
+
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+/* Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .btn-div{
+      display: flex;
+      flex-direction: column;
+    }  
+    #btn-savedr,
+    #btn-cleardr{
+      width: 100%;
+    }  
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    #btn-savedr,
+    #btn-cleardr{
+      width: 100%;
+      font-size: larger;
+    }
+    #header-two{
+      font-size: 1em;
+    }
+    #header,
+    .form-group-patient,
+    #patientName,
+    #address,
+    #age,
+    #date,
+    .license,
+    #doctor,
+    #prc,
+    #ptr{
+      font-size: 1.5em;
+    }
+    #textarea{
+      height: 50vh;
+    }
+/*    #preview{
+      height: 80px;
+      width: 90%;
+    }*/
+    #namefile{
+      font-size: 1.5em;
+    }
+    #subnamefile{
+      font-size: 1em;
+    }
+     #file-input{
+      font-size: 1.5em;
+    }
+    #notice{
+      font-size: 1em;
+    }
+    #btn-dl{
+      font-size: 1.5em;
+    }
+}
+
+/*tablet style*/
+@media only screen and (min-width: 401px) and (max-width: 960px){
+  .btn-div{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
