@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/prescriptionapp/static/css/main.9c666cb7.chunk.css",
+    "main.js": "/prescriptionapp/static/js/main.517ea8e9.chunk.js",
+    "main.js.map": "/prescriptionapp/static/js/main.517ea8e9.chunk.js.map",
+    "runtime-main.js": "/prescriptionapp/static/js/runtime-main.32589b83.js",
+    "runtime-main.js.map": "/prescriptionapp/static/js/runtime-main.32589b83.js.map",
+    "static/js/2.01e35fc9.chunk.js": "/prescriptionapp/static/js/2.01e35fc9.chunk.js",
+    "static/js/2.01e35fc9.chunk.js.map": "/prescriptionapp/static/js/2.01e35fc9.chunk.js.map",
+    "index.html": "/prescriptionapp/index.html",
+    "precache-manifest.5f4bf7fdbd72fb3a13d838832b842f06.js": "/prescriptionapp/precache-manifest.5f4bf7fdbd72fb3a13d838832b842f06.js",
+    "service-worker.js": "/prescriptionapp/service-worker.js",
+    "static/css/main.9c666cb7.chunk.css.map": "/prescriptionapp/static/css/main.9c666cb7.chunk.css.map",
+    "static/media/logo.svg": "/prescriptionapp/static/media/logo.25bf045c.svg"
+  }
+}
