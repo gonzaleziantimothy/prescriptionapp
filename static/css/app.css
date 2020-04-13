@@ -12,6 +12,9 @@ html{
 
 .App {
   width:100%;
+  background-image: url(../media/1.png);
+  background-position: right bottom;
+  background-repeat: no-repeat;
   background-size: contain; 
   background-color: #2F4F4F;
   padding: 15px 30px;
